@@ -32,7 +32,7 @@ def open_pair():
         sys.exit(1)
 
 ref_f, qry_f = open_pair()
-plot_f = open("ans2.txt", "w", encoding="utf-8")     
+ans_f = open("ans2.txt", "w", encoding="utf-8")     
 
 
 reference   = ["X"]             
@@ -112,11 +112,11 @@ seg_end_i, seg_end_j = entry.i, entry.j
 while not (entry.type == 'C' and entry.i == 0 and entry.j == 0):
     pred = dist[entry][1]
     if entry.type == 'A' and entry.type != pred.type:
-        plot_f.write(f"({entry.j},{seg_end_j},{entry.i},{seg_end_i}),\n")
+        ans_f.write(f"({entry.j},{seg_end_j},{entry.i},{seg_end_i}),\n")
     if entry.type == 'B' and entry.type != pred.type:
-        plot_f.write(f"({entry.j},{seg_end_j},{seg_end_i-1},{entry.i-1}),\n")
+        ans_f.write(f"({entry.j},{seg_end_j},{seg_end_i-1},{entry.i-1}),\n")
     if entry.type == 'C' and entry.type != pred.type:
         seg_end_i, seg_end_j = pred.i, pred.j
     entry = pred
 
-plot_f.close()
+ans_f.close()
